@@ -1,0 +1,18 @@
+<article class="task-row" data-task data-status="<%= task.status %>" data-title="<%= task.title.toLowerCase() %>">
+  <span class="status-mark status-mark--<%= task.status %>" aria-hidden="true">
+    <% if (task.status === 'completed') { %>
+      <svg viewBox="0 0 24 24"><path d="m7 12 3.2 3.2L17.5 8"/></svg>
+    <% } else if (task.status === 'in-progress') { %>
+      <svg viewBox="0 0 24 24"><path d="M9 7.5v9l7-4.5-7-4.5Z"/></svg>
+    <% } else { %>
+      <span></span>
+    <% } %>
+  </span>
+  <div class="task-copy">
+    <h3><%= task.title %></h3>
+    <% if (typeof showDate !== 'undefined' && showDate) { %>
+      <time datetime="<%= String(task.taskDate).slice(0, 10) %>"><%= formatDate(task.taskDate, { month: 'short', day: 'numeric' }) %></time>
+    <% } %>
+  </div>
+  <span class="status-label status-label--<%= task.status %>"><span></span><%= statusLabel(task.status) %></span>
+</article>

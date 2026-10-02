@@ -1,0 +1,11 @@
+<%- include('partials/head') %>
+<%- include('partials/nav') %>
+
+<main id="main-content" class="page-content error-page">
+  <p class="context-label">Error <%= statusCode %></p>
+  <h1><%= pageTitle %></h1>
+  <p><%= message %></p>
+  <a class="action-button" href="/">Return to today</a>
+</main>
+
+<%- include('partials/footer') %>

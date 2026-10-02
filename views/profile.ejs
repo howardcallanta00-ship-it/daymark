@@ -1,0 +1,33 @@
+<%- include('partials/head') %>
+<%- include('partials/nav') %>
+
+<main id="main-content" class="page-content">
+  <header class="page-header">
+    <div>
+      <p class="context-label">Account</p>
+      <h1>Profile</h1>
+      <p>Your workspace identity and contact details.</p>
+    </div>
+    <span class="record-id">User <%= String(user.id).padStart(3, '0') %></span>
+  </header>
+
+  <section class="profile-surface" aria-labelledby="profile-name">
+    <div class="profile-identity">
+      <div class="profile-avatar" aria-hidden="true"><%= initials %></div>
+      <div>
+        <h2 id="profile-name"><%= user.fullName %></h2>
+        <p>@<%= user.username %></p>
+        <span class="account-state"><i></i> Active</span>
+      </div>
+    </div>
+
+    <dl class="detail-list">
+      <div><dt>Full name</dt><dd><%= user.fullName %></dd></div>
+      <div><dt>Username</dt><dd><%= user.username %></dd></div>
+      <div><dt>Email address</dt><dd><a href="mailto:<%= user.email %>"><%= user.email %></a></dd></div>
+      <div><dt>Member since</dt><dd><%= memberSince %></dd></div>
+    </dl>
+  </section>
+</main>
+
+<%- include('partials/footer') %>

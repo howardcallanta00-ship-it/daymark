@@ -1,0 +1,21 @@
+CREATE DATABASE IF NOT EXISTS tasks_today_db
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci;
+
+USE tasks_today_db;
+
+CREATE TABLE IF NOT EXISTS tasks (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(150) NOT NULL,
+  status VARCHAR(20) NOT NULL DEFAULT 'pending',
+  task_date DATE NOT NULL,
+  created_at DATETIME NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(50) NOT NULL UNIQUE,
+  full_name VARCHAR(100) NOT NULL,
+  email VARCHAR(100) NOT NULL,
+  created_at DATETIME NOT NULL
+);

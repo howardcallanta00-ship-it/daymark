@@ -1,0 +1,65 @@
+<%- include('partials/head') %>
+<%- include('partials/nav') %>
+
+<main id="main-content" class="page-content">
+  <header class="page-header">
+    <div>
+      <p class="context-label">Schedule</p>
+      <h1>Task list</h1>
+      <p>Every task, ordered by date.</p>
+    </div>
+    <div class="record-summary" aria-label="Task status summary">
+      <span><b><%= tasks.length %></b> total</span>
+      <span><i class="record-dot record-dot--active"></i><b><%= tasks.length - completedCount - pendingCount %></b> active</span>
+      <span><i class="record-dot record-dot--pending"></i><b><%= pendingCount %></b> pending</span>
+      <span><i class="record-dot record-dot--done"></i><b><%= completedCount %></b> done</span>
+    </div>
+  </header>
+
+  <section class="work-surface task-directory" aria-labelledby="task-directory-heading">
+    <div class="directory-toolbar">
+      <div>
+        <h2 id="task-directory-heading">Schedule</h2>
+        <p class="filter-result" data-filter-result aria-live="polite"><%= tasks.length %> tasks shown</p>
+      </div>
+
+      <div class="toolbar-actions">
+        <label class="search-box">
+          <span class="sr-only">Search tasks</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 4.5 4.5"/></svg>
+          <input type="search" placeholder="Search tasks" data-task-search autocomplete="off">
+        </label>
+        <div class="filter-group" aria-label="Filter tasks by status">
+          <button type="button" class="filter-button active" data-filter="all">All</button>
+          <button type="button" class="filter-button" data-filter="pending">Pending</button>
+          <button type="button" class="filter-button" data-filter="in-progress">In progress</button>
+          <button type="button" class="filter-button" data-filter="completed">Done</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="dated-task-list">
+      <% groupedTasks.forEach((group) => { %>
+        <section class="date-group" data-date-group>
+          <div class="date-heading">
+            <h3><%= group.label %></h3>
+            <span><%= group.tasks.length %></span>
+          </div>
+          <div class="task-list">
+            <% group.tasks.forEach((task) => { %>
+              <%- include('partials/task-card', { task, showDate: false, formatDate, statusLabel }) %>
+            <% }) %>
+          </div>
+        </section>
+      <% }) %>
+    </div>
+
+    <div class="empty-state" data-filter-empty hidden>
+      <span class="empty-mark" aria-hidden="true">⌕</span>
+      <h3>No tasks match</h3>
+      <p>Clear the search or select another status.</p>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/footer') %>

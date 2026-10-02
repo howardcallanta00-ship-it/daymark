@@ -1,0 +1,26 @@
+{
+  "name": "tasks-for-today-system",
+  "version": "1.0.0",
+  "description": "Daymark: a focused MVC task workspace for today's work and the full schedule.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node --watch app.js",
+    "preview": "cross-env DEMO_MODE=true node app.js",
+    "db:init": "node scripts/init-db.js",
+    "test": "node --test",
+    "check": "node --check app.js && node --check controllers/pageController.js && node --check models/TaskModel.js && node --check models/UserModel.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.2",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "mysql2": "^3.14.4"
+  },
+  "devDependencies": {
+    "cross-env": "^10.0.0"
+  }
+}
